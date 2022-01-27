@@ -1,0 +1,118 @@
+ import java.util.*;
+ import java.io.*;
+ public class Main{
+ public static void main(String[] args) {
+ Scanner s = new Scanner(System.in);
+ PhoneDirectory dir = new PhoneDirectory();
+ int choice;
+//Menu:
+do {
+System.out.println("----------Project 4 Main Menu----------\n");
+System.out.print("1.) Load a previously saved phone directory from file \n");
+System.out.print("2.) Add or change an entry \n");
+System.out.print("3.) Search for an entry \n");
+System.out.print("4.) Remove an entry \n");
+System.out.print("5.) Display all entries \n");
+System.out.print("6.) Save the current phone directory to a file \n");
+System.out.print("7.) Exit Program \n");
+System.out.print("\nEnter Your Menu Choice: ");
+choice = s.nextInt();
+switch (choice){ case 1:
+try {
+ System.out.print("Enter the file name of a directory: ");
+ String filename = s.next();
+ BufferedReader br = new BufferedReader(new FileReader(new File(filename)));
+ String line = br.readLine();
+ ArrayList<DirectoryEntry> myList = new ArrayList<>();
+ while(line != null){
+ String[] split = line.split(" ");
+ String name = split[0];
+  String number = split[1];
+ myList.add(new DirectoryEntry(name, number));
+ line = br.readLine();
+}
+dir = new PhoneDirectory(myList); }
+}
+// buffered reader
+//
+break; case 2:
+//
+break; case 3:
+}
+else{
+System.out.print("Entry found. Number is"+ entry.getNumber());
+}
+//
+break; case 4:
+}
+else{
+System.out.print("Entry successfully removed");
+  catch(IOException e){
+ e.printStackTrace();
+  System.out.println("Enter a name: ");
+ String name = s.next();
+ System.out.println("Enter a number: ");
+ String number = s.next();
+ String num = dir.addOrChangeEntry(name, number);
+ System.out.println("The previous number: " + num);
+ System.out.print("\nEnter the name: ");
+ String name1 = s.next();
+ DirectoryEntry entry = dir.searchEntry(name1);
+ if(entry == null){
+ System.out.print("Entry not found");
+  System.out.print("\nEnter the name whose entry you want to remove: ");
+ String name2 = s.next();
+ DirectoryEntry entry2 = dir.removeEntry(name2);
+ if(entry2 == null){
+ System.out.print("Entry not found");
+ 
+ }
+break; case 5:
+dir.displayAllEntries();
+break;
+case 6: //finish implementing w/ Jiang
+try{
+   System.out.println("What is the name of the file?");
+ String filename2 = s.next();
+ System.out.println("Would you like to replace the file or append the existing file? ('r' for replace,
+ 'a' for append)");
+ String case6input = s.next();
+ BufferedReader input; // used to read stream of text from file
+ BufferedWriter output; // supports writing of text to new file
+ String inputLine;
+ String line;
+ // need to initialize inputFile and outputFile
+ // input = new BufferedReader(new FileReader(filename2)); don't need anymore
+ //replace
+ if(case6input.equals("r")){
+ output = new BufferedWriter(new FileWriter(filename2, false)); //adding the second parameter
+ "false" makes it append
+ // while((inputLine = input.readLine()) != null) {
+ // line = new String(inputLine);
+ // output.write(line + "\n"); // writes new string to new file
+// }
+}
+ for(DirectoryEntry e : dir.getDirectoryEntries()){
+ output.write(e.toString() + "\n"); //should write the entry objects to the file that is to replace
+ the current File
+ System.out.println("Replaced file.");
+ //input.close(); //closes reading of fil
+ output.close();//closes writing to new output file
+ }//end of replace
+ //append the file
+ if(case6input.equals("a")){
+ output = new BufferedWriter(new FileWriter(filename2, true)); //adding the second parameter
+ "true" makes it append
+
+ // while((inputLine = input.readLine()) != null) {
+ // line = new String(inputLine);
+ // output.write(line + "\n"); // writes new string to new file
+// }
+}
+} }
+}
+break;
+break;
+}
+} while (choice != 7); /*Exit loop when choice is 7*/ }//end of public static void main(string[] args)
+}//end of Main/Project4
